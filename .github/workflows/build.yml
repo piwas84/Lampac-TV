@@ -6,7 +6,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - - run: unzip -q "LampacTV (2).zip"
+      - uses: actions/checkout@v4
+      - run: unzip -q "LampacTV (2).zip"
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
