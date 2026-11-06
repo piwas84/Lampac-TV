@@ -7,7 +7,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: unzip -q "LampaUA.zip"
+        with:
+          fetch-depth: 0
+      - name: Unzip newest project zip
+        run: |
+          Z="$(git log -1 --name-only --pretty=format: -- '*.zip' | grep -m1 zip)"
+          echo "Using: $Z"
+          rm -rf LampacTV
+          unzip -q "$Z"
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
